@@ -76,7 +76,7 @@ html.no-js
                             h1
                                 if invoice.currency_position_before
                                     | #{invoice.currency_symbol}
-                                | #{invoice.total}
+                                | #{invoice.total_due}
                                 if !invoice.currency_position_before
                                     | #{invoice.currency_symbol}
                       .row
