@@ -110,7 +110,7 @@ StripePdfInvoice.prototype.generate = function(invoiceId, data, callback) {
                     path.resolve(path.resolve(__dirname + '/css/foundation.min.css'))
                 ]
             });
-            callback(null, invoice.pdf_name, wkhtmltopdf(html, {disableSmartShrinking: true, zoom: 2}));
+            callback(null, invoice.pdf_name, wkhtmltopdf(html, {disableSmartShrinking: true, pageSize: 'letter'}));
         }
         else
             callback(error);
