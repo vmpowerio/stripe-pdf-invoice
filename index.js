@@ -98,7 +98,7 @@ StripePdfInvoice.prototype.generate = function(invoiceId, data, callback) {
             });
             invoice.total = (invoice.total/100).toFixed(2);
             // if there is already a payment total due is 0
-            invoice.total_due = (invoice.charge && invoice.payment) ? 0 : total;
+            invoice.total_due = (invoice.charge && invoice.payment) ? 0 : invoice.total;
             invoice.subtotal = (invoice.subtotal/100).toFixed(2);
             invoice.tax_percent = invoice.tax_percent || 0;
 
