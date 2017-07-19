@@ -41,6 +41,8 @@ StripePdfInvoice.prototype.generate = function(invoiceId, data, callback) {
             invoice.label_invoice = invoice.label_invoice || 'invoice';
             invoice.label_invoice_to = invoice.label_invoice_to || 'invoice to';
             invoice.label_invoice_by = invoice.label_invoice_by || 'invoice by';
+            invoice.client_name = invoice.client_name || '';
+            invoice.client_email = invoice.client_email || '';
             invoice.label_due_on = invoice.label_due_on || 'Due on';
             invoice.label_invoice_for = invoice.label_invoice_for || 'invoice for';
             invoice.label_description = invoice.label_description || 'description';
@@ -106,7 +108,7 @@ StripePdfInvoice.prototype.generate = function(invoiceId, data, callback) {
                     path.resolve(path.resolve(__dirname + '/css/foundation.min.css'))
                 ]
             });
-            callback(null, invoice.pdf_name, wkhtmltopdf(html, {pageSize: 'letter'}));
+            callback(null, invoice.pdf_name, wkhtmltopdf(html, {disableSmartShrinking: true, zoom: 2}));
         }
         else
             callback(error);
