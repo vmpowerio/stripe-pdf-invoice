@@ -50,26 +50,31 @@ html.no-js
                       .row
                           .columns.component-title
                             | #{invoice.label_invoice_to}
-                      .row
-                          .columns
-                            | #{invoice.client_company_name}
-                      .row
-                          .columns
-                            | #{invoice.client_name}
-                      .row
-                          .columns
-                            | #{invoice.client_email}
-                      .row.address
-                          .columns
-                              .row
-                                  .columns
-                                      | #{invoice.client_company_address}
-                              .row
-                                  .columns
-                                      | #{invoice.client_company_zipcode} #{invoice.client_company_city}
-                              .row
-                                  .columns
-                                      | #{invoice.client_company_country}
+                      if invoice.invoice_detail_parts
+                        each detail in invoice.invoice_detail_parts
+                            .row
+                                | #{detail}
+                      else
+                        .row
+                            .columns
+                                | #{invoice.client_company_name}
+                        .row
+                            .columns
+                                | #{invoice.client_name}
+                        .row
+                            .columns
+                                | #{invoice.client_email}
+                        .row.address
+                            .columns
+                                .row
+                                    .columns
+                                        | #{invoice.client_company_address}
+                                .row
+                                    .columns
+                                        | #{invoice.client_company_zipcode} #{invoice.client_company_city}
+                                .row
+                                    .columns
+                                        | #{invoice.client_company_country}
                   .small-offset-4.small-4.columns.total
                       .row
                           .columns.num
@@ -182,17 +187,21 @@ html.no-js
                                 .columns.num
                                     | #{invoice.receipt_number}
                     .small-3.columns
-                        if invoice.company_siret
+                        if invoice.pay_to_label
                             .row
                                 .columns.component-title
-                                    | #{invoice.label_company_siret}
+                                    | #{invoice.pay_to_label}
                             .row.white-small
-                                .columns.num
-                                    | #{invoice.company_siret}
-                        if invoice.company_vat_number
-                            .row
-                                .columns.component-title
-                                    | #{invoice.label_company_vat_number}
-                            .row
-                                .columns.num
-                                    | #{invoice.company_vat_number}
+                                .columns
+                                    .row
+                                        | Routing Number
+                                    .row.num
+                                        | #{invoice.pay_to_routing_number}
+                                    .row
+                                        | Account Number
+                                    .row.num
+                                        | #{invoice.pay_to_account_number}
+                                    .row
+                                        | Bank Name
+                                    .row.num
+                                        | #{invoice.pay_to_bank_name}
