@@ -51,9 +51,11 @@ html.no-js
                           .columns.component-title
                             | #{invoice.label_invoice_to}
                       if invoice.invoice_detail_parts
-                        each detail in invoice.invoice_detail_parts
-                            .row
-                                | #{detail}
+                        .row.white-small
+                            .columns
+                                each detail in invoice.invoice_detail_parts
+                                    .row
+                                        | #{detail}
                       else
                         .row
                             .columns
